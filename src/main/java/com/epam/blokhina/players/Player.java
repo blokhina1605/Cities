@@ -41,7 +41,7 @@ public abstract class Player {
         deleteCity(city);
     }
 
-    public abstract boolean checkCity(City city);
+    protected abstract boolean checkCity(City city);
 
     public String getName() {
         return name;
@@ -51,7 +51,7 @@ public abstract class Player {
         return score;
     }
 
-    public void setScore() {
+    private void setScore() {
         int addScore = getPrevCity().getName().length() > 5 && getPrevCity().getName().length() < 10 ? 2 : 3;
         score += addScore;
     }

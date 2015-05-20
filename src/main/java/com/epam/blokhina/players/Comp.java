@@ -35,7 +35,7 @@ public class Comp extends Player {
     }
 
     @Override
-    public boolean checkCity(City city1) {
+    protected boolean checkCity(City city1) {
         if (getPrevCity().getLastLetter() == city1.getFirstLetter() && !cities.get(city1)) {
             city = city1;
             LOGGER.info(getName() + " made the move: " + city.getName());
@@ -44,15 +44,9 @@ public class Comp extends Player {
         return false;
     }
 
-
     private void printCity(City city) {
         System.out.println(city.getName());
     }
-
-//    @Override
-//    public boolean checkCity(City city) {
-//        return getPrevCity().getLastLetter() == city.getFirstLetter() && !cities.get(city);
-//    }
 
 
 }

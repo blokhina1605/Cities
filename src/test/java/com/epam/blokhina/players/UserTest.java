@@ -5,6 +5,7 @@ import com.epam.blokhina.game.City;
 import org.junit.Before;
 import org.powermock.api.mockito.PowerMockito;
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.io.FileReader;
@@ -21,29 +22,32 @@ import static org.mockito.Mockito.*;
 public class UserTest {
     final static String PREVIOUS_WORD = "A";
 
-    String[] citiesArr = {"алексеевка", "авдеевка", "алушта", "алупка", "апе", "ельники"};
+    String[] citiesArr = {"РђР»РµРєСЃРµРµРІРєР°", "РђРїРµ", "Р•Р»СЊРЅРёРєРё", "РР»СЊРёС‡РµРІСЃРє", "РљРёРµРІ"};
     User user;
+    Scanner sc;
+    Player player;
 
-    @Before
+    @BeforeTest
     public void setUp() throws Exception {
         user = new User();
-//        cities.put(new City("авдеевка"), false);
-//        cities.put(new City("алексеевка"), false);
-//        cities.put(new City("алушта"), false);
-//        cities.put(new City("алупка"), false);
-//        cities.put(new City("апе"), false);
+        sc = mock(Scanner.class);
+        player = mock(Player.class);
     }
 
-    @Test
-    public void sayCity() throws Exception {
-//
-//        Scanner sc = mock(Scanner.class);
-//        when(sc.next()).thenReturn(citiesArr[0]);
-//        user.sayCity();
-//
-//        PowerMockito.whenNew(FileReader.class).withArguments(anyString()).thenReturn(fr);
-//        Map<City, Boolean> cities;
-//        cities = jsonParser.parseDocument();
-//        Assert.assertEquals(cities.get(0), FIRST_ELEMENT);
+    @Test(groups = "positive")
+    public void sayCityTest() throws Exception {
+       when(Player.getPrevCity()).thenReturn(new City(PREVIOUS_WORD));
+        when(sc.next()).thenReturn(citiesArr[0]);
+        String city = user.sayCity();
+        Assert.assertEquals(city, citiesArr[0]);
     }
+
+    @Test(groups = "negative")
+    public void sayCityTestNegative() throws Exception {
+        when(Player.getPrevCity()).thenReturn(new City(PREVIOUS_WORD));
+        when(sc.next()).thenReturn(citiesArr[2]);
+        String city = user.sayCity();
+        Assert.assertEquals(city, citiesArr[2]);
+    }
+
 }

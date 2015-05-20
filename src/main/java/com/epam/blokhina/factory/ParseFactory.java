@@ -22,12 +22,12 @@ public class ParseFactory {
                 return new TxtParser();
             case "xml":
                 LOGGER.info("Txt Parser returned");
-                return new JsonParser();
+                return new XmlParser();
             case "json":
                 LOGGER.info("Txt Parser returned");
-                return new XmlParser();
+                return new JsonParser();
             case "xls":
-                LOGGER.info("Txt Parser returned");
+                LOGGER.info("Xls Parser returned");
                 return new XlsParser();
             case "jdbc":
                 LOGGER.info("Txt Parser returned");

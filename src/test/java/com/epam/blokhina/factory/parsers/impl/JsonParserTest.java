@@ -24,26 +24,25 @@ import static org.powermock.api.mockito.PowerMockito.whenNew;
 public class JsonParserTest {
 
     private static final String FILE_NAME = "D:\\IdeaProjects\\Cities\\src\\test\\resources\\cities.json";
-    private static final String FIRST_ELEMENT = "Алексеевка";
+    private static final String ELEMENT = "Алексеевка";
 
     private JsonParser jsonParser;
 
-    @Before
+    @BeforeTest
     public void setUp() throws Exception {
         jsonParser = new JsonParser();
     }
 
     @Test
     public void testParse() throws Exception {
-//        ClassLoader classLoader = getClass().getClassLoader();
-//
-//        String file = classLoader.getResource(FILE_NAME).getFile();
-        //  FileReader frMock = mock(FileReader.class);
+
         FileReader fr = new FileReader(FILE_NAME);
         PowerMockito.whenNew(FileReader.class).withArguments(anyString()).thenReturn(fr);
         Map<City, Boolean> cities;
         cities = jsonParser.parseDocument();
-        Assert.assertEquals(cities.get(0), FIRST_ELEMENT);
+        City city = new City(ELEMENT);
+        Assert.assertTrue(cities.containsKey(city));
+
     }
 }
 

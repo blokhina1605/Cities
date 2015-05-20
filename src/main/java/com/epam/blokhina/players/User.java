@@ -37,7 +37,7 @@ public class User extends Player {
 
 
     @Override
-    public boolean checkCity(City city) {
+    protected boolean checkCity(City city) {
         if (cities.containsKey(city)) {
             if (city.getFirstLetter() != prevCity.getLastLetter()) {
                 System.out.println("This city does not begin on the last letter of the previous one`s");
