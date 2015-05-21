@@ -2,6 +2,7 @@ package com.epam.blokhina.players;
 
 import com.epam.blokhina.game.City;
 import com.epam.blokhina.game.Game;
+import org.apache.log4j.Logger;
 
 import java.util.Scanner;
 
@@ -9,6 +10,7 @@ import java.util.Scanner;
  * Created by Yevheniia_Blokhina on 5/14/2015.
  */
 public class User extends Player {
+    private static final Logger LOGGER = Logger.getLogger(User.class);
 
     private City city = null;
 
@@ -37,9 +39,9 @@ public class User extends Player {
 
 
     @Override
-    protected boolean checkCity(City city) {
+    public boolean checkCity(City city) {
         if (cities.containsKey(city)) {
-            if (city.getFirstLetter() != prevCity.getLastLetter()) {
+            if (city.getFirstLetter() != getPrevCity().getLastLetter()) {
                 System.out.println("This city does not begin on the last letter of the previous one`s");
                 LOGGER.error(getName() + " made the wrong move: " + city.getName());
                 return false;

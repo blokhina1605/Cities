@@ -2,13 +2,14 @@ package com.epam.blokhina.players;
 
 import com.epam.blokhina.game.City;
 import com.epam.blokhina.game.Game;
+import org.apache.log4j.Logger;
 
 /**
  * Created by Yevheniia_Blokhina on 5/14/2015.
  */
 public class Comp extends Player {
     private City city = null;
-
+    private static final Logger LOGGER = Logger.getLogger(Comp.class);
     public Comp() {
     }
 
@@ -35,7 +36,7 @@ public class Comp extends Player {
     }
 
     @Override
-    protected boolean checkCity(City city1) {
+    public boolean checkCity(City city1) {
         if (getPrevCity().getLastLetter() == city1.getFirstLetter() && !cities.get(city1)) {
             city = city1;
             LOGGER.info(getName() + " made the move: " + city.getName());

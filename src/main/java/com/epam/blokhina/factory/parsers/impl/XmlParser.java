@@ -29,10 +29,10 @@ public class XmlParser implements InterfaceParser {
             City city;
             Document document = builder.build(PathKeeper.xmlSource);
             Element rootNode = document.getRootElement();
-            List<Element> nodes = rootNode.getChildren("city");
+            List<Element> nodes = rootNode.getChildren("Cities");
 
             for (Element node : nodes) {
-                city = new City(node.getChildText("name"));
+                city = new City(node.getChildText("City"));
                 cities.put(city, false);
             }
             return cities;

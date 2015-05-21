@@ -11,6 +11,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Map;
@@ -23,8 +24,8 @@ import static org.powermock.api.mockito.PowerMockito.whenNew;
  */
 public class JsonParserTest {
 
-    private static final String FILE_NAME = "D:\\IdeaProjects\\Cities\\src\\test\\resources\\cities.json";
-    private static final String ELEMENT = "Алексеевка";
+    private static final String FILE_NAME = "E:\\IdeaProject\\Cities\\src\\test\\resources\\cities.json";
+    private static final String ELEMENT = "Guangzhou";
 
     private JsonParser jsonParser;
 
@@ -35,14 +36,12 @@ public class JsonParserTest {
 
     @Test
     public void testParse() throws Exception {
-
         FileReader fr = new FileReader(FILE_NAME);
         PowerMockito.whenNew(FileReader.class).withArguments(anyString()).thenReturn(fr);
         Map<City, Boolean> cities;
         cities = jsonParser.parseDocument();
         City city = new City(ELEMENT);
         Assert.assertTrue(cities.containsKey(city));
-
     }
 }
 

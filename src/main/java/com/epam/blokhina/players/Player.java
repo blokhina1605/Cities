@@ -12,12 +12,12 @@ import java.util.Map;
  * Created by Yevheniia_Blokhina on 5/14/2015.
  */
 public abstract class Player {
-    protected static final Logger LOGGER = Logger.getLogger("com.epam.blokhina.players");
+    
 
     private String name;
     private int score = 0;
 
-    protected static City prevCity = new City("Харьков");
+    protected static City prevCity = new City("Guangzhou");
 
     static InterfaceParser parser = ParseFactory.createPowerParser();
     public static Map<City, Boolean> cities = parser.parseDocument();
